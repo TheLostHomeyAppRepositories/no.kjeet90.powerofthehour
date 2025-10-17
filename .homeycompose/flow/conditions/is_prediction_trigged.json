@@ -1,19 +1,19 @@
 {
-    "id": "is_prediction_trigged",
-    "title": {
-      "en": "Predicted consumption notification is !{{|not}} triggered",
-      "no": "Estimert forbruksvarsel !{{|ikke}} er trigget"
-    },
-    "hint": {
-      "en": "This card can be used to check if the predicted consumption notification has been trigged.",
-      "no": "Dette kortet kan brukes til å sjekke om estimert forbruksvarsel er trigget."
-    },
-    "highlight": true,
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      }
-    ]
-  }
+  "id": "is_prediction_trigged",
+  "title": {
+    "en": "Predicted consumption notification is !{{|not}} triggered",
+    "no": "Estimert forbruksvarsel !{{|ikke}} er trigget"
+  },
+  "hint": {
+    "en": "This card can be used to check if the predicted consumption notification has been trigged.",
+    "no": "Dette kortet kan brukes til å sjekke om estimert forbruksvarsel er trigget."
+  },
+  "highlight": true,
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
+    }
+  ]
+}

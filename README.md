@@ -2,13 +2,18 @@
 
 ## What is it?
 
-A Homey app for staying within your preferred consumption and/or cost limits one hour at a time.
+A Homey app for staying within your preferred consumption and/or cost limits one hour or quarter at a time.
 
 ## How do I get started?
 
 Read the guide on the [Github wiki](https://github.com/kjeet90/homey-power-of-the-hour/wiki). That should contain everything you need to know.
 
 # Release notes:
+
+## 1.4.0
+
+-   Added "Power of the quarter" device
+-   Updated dependencies
 
 ## 1.3.5
 

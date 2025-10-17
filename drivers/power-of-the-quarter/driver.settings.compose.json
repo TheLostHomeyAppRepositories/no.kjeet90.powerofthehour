@@ -1,0 +1,174 @@
+[
+    {
+        "type": "group",
+        "label": {
+            "en": "Consumption notification",
+            "no": "Forbruksvarsel"
+        },
+        "children": [
+            {
+                "$extends": "consumption_limit",
+                "id": "consumption_limit",
+                "value": 1000
+            },
+            {
+                "$extends": "notification_consumption_time_earliest",
+                "id": "notification_consumption_time_earliest",
+                "max": 15,
+                "value": 0
+            },
+            {
+                "$extends": "notification_consumption_time_latest",
+                "id": "notification_consumption_time_latest",
+                "max": 15,
+                "value": 15
+            },
+            {
+                "$extends": "notification_consumption_enabled",
+                "id": "notification_consumption_enabled"
+            }
+        ]
+    },
+    {
+        "type": "group",
+        "label": {
+            "en": "Prediction notification - consumption",
+            "no": "Estimeringsvarsel - Forbruk"
+        },
+        "children": [
+            {
+                "$extends": "prediction_limit",
+                "id": "prediction_limit",
+                "value": 1125
+            },
+            {
+                "$extends": "notification_prediction_time_earliest",
+                "id": "notification_prediction_time_earliest",
+                "max": 15,
+                "value": 0
+            },
+            {
+                "$extends": "notification_prediction_time_latest",
+                "id": "notification_prediction_time_latest",
+                "max": 15,
+                "value": 15
+            },
+            {
+                "$extends": "notification_prediction_enabled",
+                "id": "notification_prediction_enabled"
+            },
+            {
+                "$extends": "prediction_reset_limit",
+                "id": "prediction_reset_limit",
+                "value": 875
+            },
+            {
+                "$extends": "prediction_reset_enabled",
+                "id": "prediction_reset_enabled"
+            },
+            {
+                "$extends": "prediction_reset_new_hour_enabled",
+                "id": "prediction_reset_new_hour_enabled"
+            },
+            {
+                "$extends": "prediction_consumption_reset_transfer_enabled",
+                "id": "prediction_consumption_reset_transfer_enabled"
+            }
+        ]
+    },
+    {
+        "type": "group",
+        "label": {
+            "en": "Cost notification",
+            "no": "Kostnadsvarsel"
+        },
+        "children": [
+            {
+                "$extends": "cost_limit",
+                "id": "cost_limit"
+            },
+            {
+                "$extends": "notification_cost_time_earliest",
+                "id": "notification_cost_time_earliest",
+                "max": 15,
+                "value": 0
+            },
+            {
+                "$extends": "notification_cost_time_latest",
+                "id": "notification_cost_time_latest",
+                "max": 15,
+                "value": 15
+            },
+            {
+                "$extends": "notification_cost_enabled",
+                "id": "notification_cost_enabled"
+            }
+        ]
+    },
+    {
+        "type": "group",
+        "label": {
+            "en": "Prediction notification - cost",
+            "no": "Estimeringsvarsel - Kostnad"
+        },
+        "children": [
+            {
+                "$extends": "prediction_cost_limit",
+                "id": "prediction_cost_limit"
+            },
+            {
+                "$extends": "notification_cost_prediction_time_earliest",
+                "id": "notification_cost_prediction_time_earliest",
+                "max": 15,
+                "value": 0
+            },
+            {
+                "$extends": "notification_cost_prediction_time_latest",
+                "id": "notification_cost_prediction_time_latest",
+                "max": 15,
+                "value": 15
+            },
+            {
+                "$extends": "notification_cost_prediction_enabled",
+                "id": "notification_cost_prediction_enabled"
+            },
+            {
+                "$extends": "prediction_cost_reset_limit",
+                "id": "prediction_cost_reset_limit"
+            },
+            {
+                "$extends": "prediction_cost_reset_enabled",
+                "id": "prediction_cost_reset_enabled"
+            },
+            {
+                "$extends": "prediction_cost_reset_new_hour_enabled",
+                "id": "prediction_cost_reset_new_hour_enabled"
+            },
+            {
+                "$extends": "prediction_cost_reset_transfer_enabled",
+                "id": "prediction_cost_reset_transfer_enabled"
+            }
+        ]
+    },
+    {
+        "type": "group",
+        "label": {
+            "en": "Advanced",
+            "no": "Avansert"
+        },
+        "children": [
+            {
+                "$extends": "prediction_type",
+                "id": "prediction_type"
+            },
+            {
+                "$extends": "prediction_age",
+                "id": "prediction_age"
+            },
+            {
+                "$extends": "prediction_history_count",
+                "id": "prediction_history_count"
+            }
+        ]
+    }
+]

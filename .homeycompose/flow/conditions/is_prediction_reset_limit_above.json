@@ -1,33 +1,33 @@
 {
-    "id": "is_prediction_reset_limit_above",
-    "title": {
-      "en": "'Reset blow (Wh)' limit is !{{|not}} above",
-      "no": "'Reset under (Wh)' grensen !{{|ikke}} er over"
+  "id": "is_prediction_reset_limit_above",
+  "title": {
+    "en": "'Reset blow (Wh)' limit is !{{|not}} above",
+    "no": "'Reset under (Wh)' grensen !{{|ikke}} er over"
+  },
+  "hint": {
+    "en": "This card can be used to check towards the 'Reset below (Wh)' limit for consumption in settings.",
+    "no": "Dette kortet kan brukes til å sjekke mot 'Reset under (Wh)' grensen for forbruk i innstillinger."
+  },
+  "titleFormatted": {
+    "en": "'Reset below (Wh)' limit is !{{|not}} above [[limit]]",
+    "no": "'Reset under (Wh)' grensen !{{|ikke}} er over [[limit]]"
+  },
+  "highlight": true,
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
     },
-    "hint": {
-      "en": "This card can be used to check towards the 'Reset below (Wh)' limit for consumption in settings.",
-      "no": "Dette kortet kan brukes til å sjekke mot 'Reset under (Wh)' grensen for forbruk i innstillinger."
-    },
-    "titleFormatted": {
-      "en": "'Reset below (Wh)' limit is !{{|not}} above [[limit]]",
-      "no": "'Reset under (Wh)' grensen !{{|ikke}} er over [[limit]]"
-    },
-    "highlight": true,
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      },
-      {
-        "name": "limit",
-        "type": "number",
-        "min": 0,
-        "step": 1,
-        "title": {
-          "en": "Wh",
-          "no": "Wh"
-        }
+    {
+      "name": "limit",
+      "type": "number",
+      "min": 0,
+      "step": 1,
+      "title": {
+        "en": "Wh",
+        "no": "Wh"
       }
-    ]
-  }
+    }
+  ]
+}

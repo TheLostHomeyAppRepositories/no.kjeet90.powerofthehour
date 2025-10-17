@@ -1,15 +1,16 @@
 {
-    "id": "new_peak",
-    "title": {
-      "en": "New consumption peak",
-      "no": "Ny forbrukstopp"
-    },
-    "hint": {
-      "en": "This card triggers when a new consumption peak is registered within the current hour.",
-      "no": "Dette kortet trigges når en ny forbrukstopp er registrert for den gjeldende timen."
-    },
-    "highlight": true,
-    "tokens": [{
+  "id": "new_peak",
+  "title": {
+    "en": "New consumption peak",
+    "no": "Ny forbrukstopp"
+  },
+  "hint": {
+    "en": "This card triggers when a new consumption peak is registered within the current period.",
+    "no": "Dette kortet trigges når en ny forbrukstopp er registrert for den gjeldende perioden."
+  },
+  "highlight": true,
+  "tokens": [
+    {
       "name": "peak",
       "type": "number",
       "title": {
@@ -20,12 +21,13 @@
         "en": "4000",
         "no": "4000"
       }
-    }],
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      }
-    ]
-  }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
+    }
+  ]
+}

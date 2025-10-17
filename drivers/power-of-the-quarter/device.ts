@@ -1,7 +1,8 @@
 import Homey from 'homey';
-import { isNewHour, getHoursBetween, getPowerAvailable, getRemainingHour, getPrediction, getElapsedHour } from '../../lib/calculations.js';
+import { getPowerAvailableQuarter, getQuarterPrediction, getElapsedQuarter, isNewQuarter, getRemainingQuarter } from '../../lib/quarter-calculations.js';
+import { getHoursBetween } from '../../lib/calculations.js';
 
-class PowerOfTheHourDevice extends Homey.Device {
+class PowerOfTheQuarterDevice extends Homey.Device {
     previousTimestamp: Date | null = null;
     previousConsumption = 0;
 
@@ -22,27 +23,27 @@ class PowerOfTheHourDevice extends Homey.Device {
             this.log('Failed to get latest: ', err);
             this.error(err);
         }
-        const validTimeStamp = !!(this.latest.timestamp && !isNewHour(new Date(), new Date(this.latest.timestamp)));
-        await this.upgradeExistingDevice();
+        const validTimeStamp = !!(this.latest.timestamp && !isNewQuarter(new Date(), new Date(this.latest.timestamp)));
+        // await this.upgradeExistingDevice();
         await this.setInitialValues(validTimeStamp);
         this.log('Initialized device', this.getName());
         this.predict();
     }
 
-    async upgradeExistingDevice() {
-        if (!this.hasCapability('meter_cost')) await this.addCapability('meter_cost');
-        if (!this.hasCapability('alarm_cost_notified')) {
-            await this.addCapability('alarm_cost_notified');
-        }
-        if (!this.hasCapability('meter_cost_prediction')) await this.addCapability('meter_cost_prediction');
-        if (!this.hasCapability('alarm_cost_prediction_notified')) {
-            await this.addCapability('alarm_cost_prediction_notified');
-        }
-        if (!this.hasCapability('meter_price')) await this.addCapability('meter_price');
-        if (!this.hasCapability('meter_cost_previous_hour')) await this.addCapability('meter_cost_previous_hour');
-        if (!this.hasCapability('meter_consumption_remaining')) await this.addCapability('meter_consumption_remaining');
-        if (!this.hasCapability('meter_prediction_remaining')) await this.addCapability('meter_prediction_remaining');
-    }
+    // async upgradeExistingDevice() {
+    //     if (!this.hasCapability('meter_cost')) await this.addCapability('meter_cost');
+    //     if (!this.hasCapability('alarm_cost_notified')) {
+    //         await this.addCapability('alarm_cost_notified');
+    //     }
+    //     if (!this.hasCapability('meter_cost_prediction')) await this.addCapability('meter_cost_prediction');
+    //     if (!this.hasCapability('alarm_cost_prediction_notified')) {
+    //         await this.addCapability('alarm_cost_prediction_notified');
+    //     }
+    //     if (!this.hasCapability('meter_price')) await this.addCapability('meter_price');
+    //     if (!this.hasCapability('meter_cost_previous_hour')) await this.addCapability('meter_cost_previous_hour');
+    //     if (!this.hasCapability('meter_consumption_remaining')) await this.addCapability('meter_consumption_remaining');
+    //     if (!this.hasCapability('meter_prediction_remaining')) await this.addCapability('meter_prediction_remaining');
+    // }
 
     async setInitialValues(validTimeStamp = false) {
         if (validTimeStamp) {
@@ -130,8 +131,8 @@ class PowerOfTheHourDevice extends Homey.Device {
             this.isProcessing = true;
             try {
                 const hoursSincePreviousReading = getHoursBetween(timeNow, this.previousTimestamp);
-                if (isNewHour(timeNow, this.previousTimestamp)) {
-                    await this.startNewHour(watt, timeNow);
+                if (isNewQuarter(timeNow, this.previousTimestamp)) {
+                    await this.startNewQuarter(watt, timeNow);
                 } else {
                     const wattHours = watt * hoursSincePreviousReading;
                     await this.updateCapabilityValue('meter_consumption', this.getCapabilityValue('meter_consumption') + wattHours);
@@ -163,8 +164,8 @@ class PowerOfTheHourDevice extends Homey.Device {
     async updateRemaining(timeNow: Date) {
         const consumptionRemaining = this.getCapabilityValue('meter_consumption_remaining');
         const predictionRemaining = this.getCapabilityValue('meter_prediction_remaining');
-        const newConsumptionRemaining = getPowerAvailable(this.getSetting('consumption_limit'), this.getCapabilityValue('meter_consumption'), timeNow);
-        const newPredictionRemaining = getPowerAvailable(this.getSetting('prediction_limit'), this.getCapabilityValue('meter_consumption'), timeNow);
+        const newConsumptionRemaining = getPowerAvailableQuarter(this.getSetting('consumption_limit'), this.getCapabilityValue('meter_consumption'), timeNow);
+        const newPredictionRemaining = getPowerAvailableQuarter(this.getSetting('prediction_limit'), this.getCapabilityValue('meter_consumption'), timeNow);
         if (consumptionRemaining !== newConsumptionRemaining) {
             await this.updateCapabilityValue('meter_consumption_remaining', newConsumptionRemaining);
             this.homey.flow
@@ -187,12 +188,12 @@ class PowerOfTheHourDevice extends Homey.Device {
         await this.setStoreValue('latest', { timestamp: this.previousTimestamp }).catch(this.error); // Object to keep open for future implementations and also to support v1.0.0 implementation
     }
 
-    async startNewHour(watt: number, timeNow: Date) {
-        const remainingWattHours = this.previousTimestamp ? watt * getRemainingHour(this.previousTimestamp) : 0;
+    async startNewQuarter(watt: number, timeNow: Date) {
+        const remainingWattHours = this.previousTimestamp ? (watt * getRemainingQuarter(this.previousTimestamp)) / 4 : 0;
         await this.updateCapabilityValue('meter_consumption_previous_hour', this.getCapabilityValue('meter_consumption') + remainingWattHours);
         await this.updateCapabilityValue('meter_cost_previous_hour', this.getCapabilityValue('meter_cost') + (remainingWattHours / 1000) * this.getCapabilityValue('meter_price'));
         await this.updateCapabilityValue('meter_consumption_peak', watt);
-        const wattHours = watt * getElapsedHour(timeNow);
+        const wattHours = (watt * getElapsedQuarter(timeNow)) / 4;
         await this.updateCapabilityValue('meter_consumption', wattHours);
         await this.updateCapabilityValue('meter_cost', (wattHours / 1000) * this.getCapabilityValue('meter_price'));
         if (!this.getSetting('prediction_consumption_reset_transfer_enabled')) {
@@ -206,7 +207,7 @@ class PowerOfTheHourDevice extends Homey.Device {
         this.resetConsumptionNotification();
         this.resetCostNotification();
         this.homey.flow
-            .getDeviceTriggerCard('hour_reset')
+            .getDeviceTriggerCard('quarter_reset')
             .trigger(
                 this,
                 { previous: this.decimals(this.getCapabilityValue('meter_consumption_previous_hour'), 0), previousCost: this.decimals(this.getCapabilityValue('meter_cost_previous_hour'), 2) },
@@ -278,8 +279,8 @@ class PowerOfTheHourDevice extends Homey.Device {
         }
     }
 
-    async resetPredictionNotification(isNewHour = false) {
-        if (this.getCapabilityValue('alarm_prediction_notified') && (!isNewHour || (isNewHour && this.getSetting('prediction_reset_new_hour_enabled')))) {
+    async resetPredictionNotification(isNewPeriod = false) {
+        if (this.getCapabilityValue('alarm_prediction_notified') && (!isNewPeriod || (isNewPeriod && this.getSetting('prediction_reset_new_hour_enabled')))) {
             this.homey.flow
                 .getDeviceTriggerCard('prediction_reset')
                 .trigger(this, { predicted: this.decimals(this.getCapabilityValue('meter_predictor'), 0) }, {})
@@ -291,8 +292,8 @@ class PowerOfTheHourDevice extends Homey.Device {
         await this.updateCapabilityValue('alarm_prediction_notified', false);
     }
 
-    async resetCostPredictionNotification(isNewHour = false) {
-        if (this.getCapabilityValue('alarm_cost_prediction_notified') && (!isNewHour || (isNewHour && this.getSetting('prediction_cost_reset_new_hour_enabled')))) {
+    async resetCostPredictionNotification(isNewPeriod = false) {
+        if (this.getCapabilityValue('alarm_cost_prediction_notified') && (!isNewPeriod || (isNewPeriod && this.getSetting('prediction_cost_reset_new_hour_enabled')))) {
             this.homey.flow
                 .getDeviceTriggerCard('prediction_cost_reset')
                 .trigger(this, { predicted: this.decimals(this.getCapabilityValue('meter_cost_prediction'), 2) }, {})
@@ -336,12 +337,17 @@ class PowerOfTheHourDevice extends Homey.Device {
         const earliest = this.getSetting(`notification_${setting}_time_earliest`);
         const latest = this.getSetting(`notification_${setting}_time_latest`);
         const enabled = this.getSetting(`notification_${setting}_enabled`);
-        const currentTime = new Date().getMinutes();
-        return enabled && currentTime <= Number(latest) && currentTime >= Number(earliest);
+
+        const currentMinute = new Date().getMinutes();
+        const minuteInQuarter = currentMinute % 15;
+
+        const isWithinQuarter = minuteInQuarter >= earliest && minuteInQuarter <= latest;
+
+        return enabled && isWithinQuarter;
     }
 
     async predict() {
-        const prediction = getPrediction(this.history, this.getSetting('prediction_age'), this.getSetting('prediction_type'));
+        const prediction = getQuarterPrediction(this.history, this.getSetting('prediction_age'), this.getSetting('prediction_type'));
         await this.updateCapabilityValue('meter_predictor', this.getCapabilityValue('meter_consumption') + prediction);
         await this.updateCapabilityValue('meter_cost_prediction', this.getCapabilityValue('meter_cost') + (prediction / 1000) * this.getCapabilityValue('meter_price'));
     }
@@ -388,5 +394,5 @@ class PowerOfTheHourDevice extends Homey.Device {
     }
 }
 
-module.exports = PowerOfTheHourDevice;
-export default PowerOfTheHourDevice;
+module.exports = PowerOfTheQuarterDevice;
+export default PowerOfTheQuarterDevice;

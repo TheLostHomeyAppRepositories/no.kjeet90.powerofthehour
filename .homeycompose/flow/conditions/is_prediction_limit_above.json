@@ -1,33 +1,33 @@
 {
-    "id": "is_prediction_limit_above",
-    "title": {
-      "en": "Predicted consumption limit is !{{|not}} above",
-      "no": "Estimert forbruksgrense !{{|ikke}} er over"
+  "id": "is_prediction_limit_above",
+  "title": {
+    "en": "Predicted consumption limit is !{{|not}} above",
+    "no": "Estimert forbruksgrense !{{|ikke}} er over"
+  },
+  "hint": {
+    "en": "This card can be used to check towards the predicted consumption limit in settings.",
+    "no": "Dette kortet kan brukes til å sjekke mot estimert forbruksgrense i innstillinger."
+  },
+  "titleFormatted": {
+    "en": "Predicted consunption limit is !{{|not}} above [[limit]]",
+    "no": "Estimert forbruksgrense !{{|ikke}} er over [[limit]]"
+  },
+  "highlight": true,
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
     },
-    "hint": {
-      "en": "This card can be used to check towards the predicted consumption limit in settings.",
-      "no": "Dette kortet kan brukes til å sjekke mot estimert forbruksgrense i innstillinger."
-    },
-    "titleFormatted": {
-      "en": "Predicted consunption limit is !{{|not}} above [[limit]]",
-      "no": "Estimert forbruksgrense !{{|ikke}} er over [[limit]]"
-    },
-    "highlight": true,
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      },
-      {
-        "name": "limit",
-        "type": "number",
-        "min": 0,
-        "step": 1,
-        "title": {
-          "en": "Wh",
-          "no": "Wh"
-        }
+    {
+      "name": "limit",
+      "type": "number",
+      "min": 0,
+      "step": 1,
+      "title": {
+        "en": "Wh",
+        "no": "Wh"
       }
-    ]
-  }
+    }
+  ]
+}

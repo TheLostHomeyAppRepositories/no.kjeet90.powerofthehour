@@ -1,15 +1,16 @@
 {
-    "id": "consumption_limit_reached",
-    "title": {
-      "en": "Consumption notification trigged",
-      "no": "Forbruksvarsel trigget"
-    },
-    "hint": {
-      "en": "This card triggers when the actual consumption has exceeded the configured limit and the time of the hour is between the notification times set in settings.",
-      "no": "Dette kortet trigges når det faktiske forbruket har oversteget den konfigurerte grensen og klokkeslettet er mellom varseltidspunktet satt i innstillinger."
-    },
-    "highlight": true,
-    "tokens": [{
+  "id": "consumption_limit_reached",
+  "title": {
+    "en": "Consumption notification trigged",
+    "no": "Forbruksvarsel trigget"
+  },
+  "hint": {
+    "en": "This card triggers when the actual consumption has exceeded the configured limit and the time is between the notification times set in settings.",
+    "no": "Dette kortet trigges når det faktiske forbruket har oversteget den konfigurerte grensen og klokkeslettet er mellom varseltidspunktet satt i innstillinger."
+  },
+  "highlight": true,
+  "tokens": [
+    {
       "name": "consumption",
       "type": "number",
       "title": {
@@ -20,12 +21,13 @@
         "en": "4000",
         "no": "4000"
       }
-    }],
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      }
-    ]
-  }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
+    }
+  ]
+}

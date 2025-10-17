@@ -108,7 +108,7 @@ describe('getReadingsYoungerThan', () => {
     });
 });
 
-describe('predict', () => {
+describe('predictRemainingHour', () => {
     it('should predict 0W consumption if nothing is passed in', () => {
         expect(calculations.predictRemainingHour([])).toBe(0);
     });
@@ -199,7 +199,7 @@ describe('getRemainingHour', () => {
         expect(calculations.getRemainingHour(timestamp)).toBe(0.8);
     });
 
-    it('Remaining hour 12:45 to equal 0.25', () => {
+    it('Remaining hour 12:45 to equal 0.5', () => {
         const timestamp = new Date('2020-10-21T12:45:00.000Z');
         expect(calculations.getRemainingHour(timestamp)).toBe(0.25);
     });
@@ -271,7 +271,8 @@ describe('isNewHour', () => {
     });
 });
 
-describe('ion', () => {
+
+describe('getPrediction', () => {
     it('Prediction: no valid values', () => {
         expect(calculations.getPrediction(undefined, undefined, undefined)).toBe(0);
     });

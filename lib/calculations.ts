@@ -1,5 +1,3 @@
-'use strict';
-
 export function getElapsedHour(timestamp: Date) {
     const time = new Date(timestamp);
     return time.getMinutes() / 60 + time.getSeconds() / 3600;

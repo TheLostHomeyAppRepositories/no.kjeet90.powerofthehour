@@ -3,9 +3,9 @@
 // import { v4 as uuid } from 'uuid';
 import Homey from 'homey';
 
-class PowerOfTheHourDriver extends Homey.Driver {
+class PowerOfTheQuarterDriver extends Homey.Driver {
     async onInit() {
-        this.log('Power of the hour driver has been initialized');
+        this.log('Power of the quarter driver has been initialized');
     }
 
 
@@ -13,7 +13,7 @@ class PowerOfTheHourDriver extends Homey.Driver {
         const { v4: uuid } = await import('uuid');
         return [
             {
-                name: 'Power of the hour',
+                name: 'Power of the quarter',
                 data: {
                     id: uuid()
                 }
@@ -22,4 +22,4 @@ class PowerOfTheHourDriver extends Homey.Driver {
     }
 }
 
-module.exports = PowerOfTheHourDriver;
+module.exports = PowerOfTheQuarterDriver;

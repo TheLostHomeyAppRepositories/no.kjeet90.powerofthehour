@@ -1,18 +1,18 @@
 {
-    "id": "reset_all_values",
-    "title": {
-      "en": "Reset all values",
-      "no": "Reset alle verdier"
-    },
-    "hint": {
-      "en": "Resets all values and notifications without any flows triggering. No settings are changed. Mainly to be used during testing and tuning when you don't want to wait for a new hour to reset.",
-      "no": "Resetter alle verdier og varsler uten at noen flower trigges. Ingen instillinger blir endret. Hovedsaklig for bruk under testing og justering når man ikke vil vente på en ny time for reset."
-    },
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      }
-    ]
-  }
+  "id": "reset_all_values",
+  "title": {
+    "en": "Reset all values",
+    "no": "Reset alle verdier"
+  },
+  "hint": {
+    "en": "Resets all values and notifications without any flows triggering. No settings are changed. Mainly to be used during testing and tuning when you don't want to wait for a reset.",
+    "no": "Resetter alle verdier og varsler uten at noen flower trigges. Ingen instillinger blir endret. Hovedsaklig for bruk under testing og justering når man ikke vil vente på en reset."
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
+    }
+  ]
+}

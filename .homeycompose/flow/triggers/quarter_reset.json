@@ -1,0 +1,45 @@
+{
+    "id": "quarter_reset",
+    "title": {
+        "en": "New quarter started",
+        "no": "Nytt kvarter startet"
+    },
+    "hint": {
+        "en": "This card triggers when a new quarter starts, even when no notifications have been trigged.",
+        "no": "Dette kortet trigges når et nytt kvarter starter, selv uten at noen varsler har vært trigget."
+    },
+    "highlight": true,
+    "tokens": [
+        {
+            "name": "previous",
+            "type": "number",
+            "title": {
+                "en": "Previous quarter consumption (Wh)",
+                "no": "Forrige kvarters forbruk (Wh)"
+            },
+            "example": {
+                "en": "4000",
+                "no": "4000"
+            }
+        },
+        {
+            "name": "previousCost",
+            "type": "number",
+            "title": {
+                "en": "Previous quarter cost (kr)",
+                "no": "Forrige kvarters kostnad (kr)"
+            },
+            "example": {
+                "en": "2.52",
+                "no": "2.52"
+            }
+        }
+    ],
+    "args": [
+        {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=power-of-the-quarter"
+        }
+    ]
+}

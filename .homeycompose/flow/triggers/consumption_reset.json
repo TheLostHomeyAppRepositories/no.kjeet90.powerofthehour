@@ -1,15 +1,16 @@
 {
-    "id": "consumption_reset",
-    "title": {
-      "en": "Consumption notification reset",
-      "no": "Forbruksvarsel resatt"
-    },
-    "hint": {
-      "en": "This card triggers when the consumption notification is trigged and a new hour starts. Can be used to e.g. turn heaters back on if they were turned off by the consumption notification.",
-      "no": "Dette kortet trigges når forbruksvarselet er trigget og en ny time starter. Kan f.eks brukes til å skru på varmeovner igjen, dersom de ble skrudd av pga forbruksvarselet."
-    },
-    "highlight": true,
-    "tokens": [{
+  "id": "consumption_reset",
+  "title": {
+    "en": "Consumption notification reset",
+    "no": "Forbruksvarsel resatt"
+  },
+  "hint": {
+    "en": "This card triggers when the consumption notification is trigged and a new period starts. Can be used to e.g. turn heaters back on if they were turned off by the consumption notification.",
+    "no": "Dette kortet trigges når forbruksvarselet er trigget og en ny periode starter. Kan f.eks brukes til å skru på varmeovner igjen, dersom de ble skrudd av pga forbruksvarselet."
+  },
+  "highlight": true,
+  "tokens": [
+    {
       "name": "previous",
       "type": "number",
       "title": {
@@ -20,12 +21,13 @@
         "en": "4000",
         "no": "4000"
       }
-    }],
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      }
-    ]
-  }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
+    }
+  ]
+}

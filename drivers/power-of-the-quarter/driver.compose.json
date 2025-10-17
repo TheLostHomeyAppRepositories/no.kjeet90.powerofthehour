@@ -1,0 +1,118 @@
+{
+    "id": "power-of-the-quarter",
+    "name": {
+        "en": "Power of the quarter",
+        "no": "Power of the quarter"
+    },
+    "class": "sensor",
+    "capabilities": [
+        "meter_consumption",
+        "alarm_consumption_notified",
+        "meter_predictor",
+        "alarm_prediction_notified",
+        "meter_consumption_peak",
+        "meter_consumption_previous_hour",
+        "meter_cost",
+        "alarm_cost_notified",
+        "meter_cost_prediction",
+        "alarm_cost_prediction_notified",
+        "meter_price",
+        "meter_cost_previous_hour",
+        "meter_consumption_remaining",
+        "meter_prediction_remaining"
+    ],
+    "capabilitiesOptions": {
+        "meter_consumption": {
+            "title": {
+                "en": "Consumption this quarter",
+                "no": "Forbruk dette kvarteret"
+            },
+            "desc": {
+                "en": "Shows total consumption so far this quarter",
+                "no": "Viser totalt forbruk så langt dette kvarteret"
+            }
+        },
+        "meter_predictor": {
+            "desc": {
+                "en": "Shows total predicted consumption for this quarter based on history",
+                "no": "Viser totalt estimert forbruk for dette kvarteret basert på historikk"
+            }
+        },
+        "meter_consumption_peak": {
+            "title": {
+                "en": "Peak this quarter",
+                "no": "Topp dette kvarteret"
+            },
+            "desc": {
+                "en": "Shows highest registered consumption peak within this quarter",
+                "no": "Viser høyeste registrerte forbrukstopp dette kvarteret"
+            }
+        },
+        "meter_consumption_previous_hour": {
+            "title": {
+                "en": "Consumption previous quarter",
+                "no": "Forbruk forrige kvarter"
+            },
+            "desc": {
+                "en": "Shows previous quarter total consumption",
+                "no": "Viser forrige kvarters totale forbruk"
+            }
+        },
+        "meter_cost": {
+            "title": {
+                "en": "Cost this quarter",
+                "no": "Kostnad dette kvarteret"
+            },
+            "desc": {
+                "en": "Shows total cost so far this quarter",
+                "no": "Viser total kostnad så langt dette kvarteret"
+            }
+        },
+        "meter_cost_prediction": {
+            "desc": {
+                "en": "Shows total predicted cost for this quarter based on history",
+                "no": "Viser totalt estimert kostnad for dette kvarteret basert på historikk"
+            }
+        },
+        "meter_cost_previous_hour": {
+            "title": {
+                "en": "Cost previous quarter",
+                "no": "Kostnad forrige kvarter"
+            },
+            "desc": {
+                "en": "Shows previous quarter total cost",
+                "no": "Viser forrige kvarters totale kostnad"
+            }
+        },
+        "meter_consumption_remaining": {
+            "desc": {
+                "en": "How much power you can use for the rest of the quarter before reaching the consumption limit.",
+                "no": "Hvor mye effekt du kan bruke resten av kvarteret før du når forbruksgrensen."
+            }
+        },
+        "meter_prediction_remaining": {
+            "desc": {
+                "en": "How much power you can use for the rest of the quarter before reaching the predicted consumption limit.",
+                "no": "Hvor mye effekt du kan bruke resten av kvarteret før du når den estimerte forbruksgrensen."
+            }
+        }
+    },
+    "images": {
+        "large": "{{driverAssetsPath}}/images/large.png",
+        "small": "{{driverAssetsPath}}/images/small.png"
+    },
+    "icon": "{{driverAssetsPath}}/icon.svg",
+    "pair": [
+        {
+            "id": "list_devices",
+            "template": "list_devices",
+            "navigation": {
+                "next": "add_my_devices"
+            }
+        },
+        {
+            "id": "add_my_devices",
+            "template": "add_devices"
+        }
+    ]
+}

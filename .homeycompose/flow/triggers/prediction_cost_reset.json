@@ -1,15 +1,16 @@
 {
-    "id": "prediction_cost_reset",
-    "title": {
-      "en": "Predicted cost notification reset",
-      "no": "Estimert kostnadsvarsel resatt"
-    },
-    "hint": {
-      "en": "This card triggers when the predicted cost drops below the configured limit while the predicted cost notification is trigged and the setting 'Reset activated' is on. It can also be set to trigger on reset due to start of a new hour in the settings (still requires cost predicton notification to be trigged).",
-      "no": "Dette kortet trigges dersom den estimerte kostnaden går under den konfigurerte grensen mens estimert kostnadsvarsel er trigget og innstillingen 'Reset aktivert' er på. Det kan også bli satt til å trigge pga start av ny time i innstillinger (det krever likevel at estimert kostnadsvarselet er trigget). "
-    },
-    "highlight": true,
-    "tokens": [{
+  "id": "prediction_cost_reset",
+  "title": {
+    "en": "Predicted cost notification reset",
+    "no": "Estimert kostnadsvarsel resatt"
+  },
+  "hint": {
+    "en": "This card triggers when the predicted cost drops below the configured limit while the predicted cost notification is trigged and the setting 'Reset activated' is on. It can also be set to trigger on reset due to start of a new period in the settings (still requires cost predicton notification to be trigged).",
+    "no": "Dette kortet trigges dersom den estimerte kostnaden går under den konfigurerte grensen mens estimert kostnadsvarsel er trigget og innstillingen 'Reset aktivert' er på. Det kan også bli satt til å trigge pga start av ny periode i innstillinger (det krever likevel at estimert kostnadsvarselet er trigget). "
+  },
+  "highlight": true,
+  "tokens": [
+    {
       "name": "predicted",
       "type": "number",
       "title": {
@@ -20,12 +21,13 @@
         "en": "6.52",
         "no": "6.52"
       }
-    }],
-    "args": [
-      {
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=power-of-the-hour"
-      }
-    ]
-  }
+    }
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=power-of-the-hour|power-of-the-quarter"
+    }
+  ]
+}
